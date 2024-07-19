@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
-import { Data } from "./index";
 
 const prisma = new PrismaClient();
 const app = express();
@@ -40,7 +39,7 @@ app.put("/api/fact/update/:id", async (req, res) => {
   const { id } = req.params;
   const { text, source, category } = req.body;
 
-  const data: Data = {};
+  const data: Record<string, string | Date> = {};
 
   if (text !== undefined) {
     data.text = text;
@@ -51,6 +50,8 @@ app.put("/api/fact/update/:id", async (req, res) => {
   if (category !== undefined) {
     data.category = category;
   }
+
+  data.updated_at = new Date();
 
   const fact_to_update = await prisma.fact.update({
     where: { id: Number(id) },
