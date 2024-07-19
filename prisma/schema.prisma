@@ -11,6 +11,7 @@ generator client {
 model Fact {
   id                 Int      @default(autoincrement()) @id
   created_at         DateTime @default(now())
+  updated_at         DateTime @default(now())
   text               String?
   source             String?
   category           String?
