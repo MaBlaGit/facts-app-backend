@@ -1,12 +1,16 @@
 {
-  "name": "todo-app-backend-final",
+  "name": "facts-app-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Simple backend app to demonstrate E2E API tests in Supertest",
+  "main": "",
   "scripts": {
     "start": "pnpm ts-node ./src/app.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "api",
+    "supertest",
+    "e2e api tests"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
