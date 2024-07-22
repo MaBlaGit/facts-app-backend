@@ -1,15 +1,19 @@
 {
   "name": "facts-app-backend",
   "version": "1.0.0",
-  "description": "Simple backend app to demonstrate E2E API tests in Supertest",
+  "description": "Simple node backend app to demonstrate E2E API tests in Supertest",
   "main": "",
   "scripts": {
-    "start": "pnpm ts-node ./src/app.ts"
+    "start": "ts-node ./src/server.ts"
   },
   "keywords": [
+    "node",
+    "express",
+    "prisma",
     "api",
     "supertest",
-    "e2e api tests"
+    "api test",
+    "e2e tests"
   ],
   "author": "",
   "license": "ISC",
