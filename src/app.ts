@@ -1,9 +1,15 @@
 import { PrismaClient } from "@prisma/client";
 import express from "express";
+import cors from "cors";
+import "dotenv/config";
+
+const APP_URL = process.env.URL_DEV;
+const PORT = process.env.PORT;
 
 const prisma = new PrismaClient();
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 // fetch all facts
@@ -70,6 +76,6 @@ app.delete(`/api/fact/:id`, async (req, res) => {
   res.json(fact_to_delete);
 });
 
-app.listen(3000, () =>
-  console.log("REST API server ready at: http://localhost:3000")
+app.listen(PORT, () =>
+  console.log(`REST API server ready at: ${APP_URL}:${PORT}`)
 );
