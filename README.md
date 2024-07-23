@@ -19,3 +19,7 @@ To run app on the local environment, you will need:
 - create database: `docker-compose up -d`
 - seed DB by executing script: `seed-db.sh`
 - run the app by executing: `pnpm start`
+
+#### OpenAPI documentation
+
+API documentation you can find under `/api-docs`
