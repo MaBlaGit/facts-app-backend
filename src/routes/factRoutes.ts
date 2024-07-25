@@ -5,6 +5,9 @@ import {
   createFact,
   updateFact,
   deleteFact,
+  voteInteresting,
+  voteMindBlowing,
+  voteFalse,
 } from "../controllers/factController";
 
 const router = express.Router();
@@ -120,5 +123,92 @@ router.put("/update/:id", updateFact);
  *         description: Fact not found
  */
 router.delete("/:id", deleteFact);
+
+/**
+ * @swagger
+ * /api/facts/{id}/vote/interesting:
+ *   post:
+ *     summary: Vote for interesting
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the fact to vote
+ *       - in: query
+ *         name: action
+ *         required: true
+ *         schema:
+ *           type: string
+ *           enum: [increment, decrement]
+ *         description: The action to perform (increment or decrement)
+ *     responses:
+ *       200:
+ *         description: The updated fact with the new vote count
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Fact'
+ */
+router.post('/:id/vote/interesting', voteInteresting);
+
+/**
+ * @swagger
+ * /api/facts/{id}/vote/mindblowing:
+ *   post:
+ *     summary: Vote for mind-blowing
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the fact to vote
+ *       - in: query
+ *         name: action
+ *         required: true
+ *         schema:
+ *           type: string
+ *           enum: [increment, decrement]
+ *         description: The action to perform (increment or decrement)
+ *     responses:
+ *       200:
+ *         description: The updated fact with the new vote count
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Fact'
+ */
+router.post('/:id/vote/mindblowing', voteMindBlowing);
+
+/**
+ * @swagger
+ * /api/facts/{id}/vote/false:
+ *   post:
+ *     summary: Vote for false
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the fact to vote
+ *       - in: query
+ *         name: action
+ *         required: true
+ *         schema:
+ *           type: string
+ *           enum: [increment, decrement]
+ *         description: The action to perform (increment or decrement)
+ *     responses:
+ *       200:
+ *         description: The updated fact with the new vote count
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Fact'
+ */
+router.post('/:id/vote/false', voteFalse);
 
 export default router;

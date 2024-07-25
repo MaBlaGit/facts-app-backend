@@ -21,6 +21,15 @@
  *         category:
  *           type: string
  *           description: The category of the fact
+ *         votes_interesting:
+ *           type: integer
+ *           description: Number of interesting votes
+ *         votes_mind_blowing:
+ *           type: integer
+ *           description: Number of mind-blowing votes
+ *         votes_false:
+ *           type: integer
+ *           description: Number of false votes
  *         created_at:
  *           type: string
  *           format: date-time
@@ -34,6 +43,9 @@
  *         text: 'The quick brown fox jumps over the lazy dog.'
  *         source: 'Some Source'
  *         category: 'Example Category'
+ *         votes_interesting: 10
+ *         votes_mind_blowing: 5
+ *         votes_false: 1
  *         created_at: '2021-05-06T20:00:00.000Z'
  *         updated_at: '2021-05-06T20:00:00.000Z'
  */
