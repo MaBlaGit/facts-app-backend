@@ -90,6 +90,7 @@ export const voteInteresting = async (
       votes_interesting: {
         increment,
       },
+      updated_at: new Date(),
     },
   });
 
@@ -111,6 +112,7 @@ export const voteMindBlowing = async (
       votes_mind_blowing: {
         increment,
       },
+      updated_at: new Date(),
     },
   });
 
@@ -129,6 +131,7 @@ export const voteFalse = async (req: Request, res: Response): Promise<void> => {
       votes_false: {
         increment,
       },
+      updated_at: new Date(),
     },
   });
 
