@@ -74,3 +74,66 @@ export const deleteFact = async (
   });
   res.json(fact_to_delete);
 };
+
+export const voteInteresting = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const { id } = req.params;
+  const { action } = req.query;
+
+  const increment = action === "increment" ? 1 : -1;
+
+  const updatedFact = await prisma.fact.update({
+    where: { id: Number(id) },
+    data: {
+      votes_interesting: {
+        increment,
+      },
+      updated_at: new Date(),
+    },
+  });
+
+  res.json(updatedFact);
+};
+
+export const voteMindBlowing = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const { id } = req.params;
+  const { action } = req.query;
+
+  const increment = action === "increment" ? 1 : -1;
+
+  const updatedFact = await prisma.fact.update({
+    where: { id: Number(id) },
+    data: {
+      votes_mind_blowing: {
+        increment,
+      },
+      updated_at: new Date(),
+    },
+  });
+
+  res.json(updatedFact);
+};
+
+export const voteFalse = async (req: Request, res: Response): Promise<void> => {
+  const { id } = req.params;
+  const { action } = req.query;
+
+  const increment = action === "increment" ? 1 : -1;
+
+  const updatedFact = await prisma.fact.update({
+    where: { id: Number(id) },
+    data: {
+      votes_false: {
+        increment,
+      },
+      updated_at: new Date(),
+    },
+  });
+
+  res.json(updatedFact);
+};
