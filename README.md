@@ -15,6 +15,7 @@ To run app on the local environment, you will need:
 #### Local setup
 
 - clone this repo
+- create `.env` from `env-example` file and set `POSTGRES_USER` and `POSTGRES_PASSWORD`
 - install all dependencies: `pnpm install`
 - create database: `docker-compose up -d`
 - seed DB by executing script: `seed-db.sh`
