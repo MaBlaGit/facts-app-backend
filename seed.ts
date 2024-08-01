@@ -99,6 +99,8 @@ const facts = [
 ];
 
 async function main() {
+  await prisma.fact.deleteMany({});
+
   for (const fact of facts) {
     await prisma.fact.create({
       data: fact,
