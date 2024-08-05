@@ -24,3 +24,8 @@ To run app on the local environment, you will need:
 #### OpenAPI documentation
 
 API documentation you can find under `/api-docs`
+
+#### Roadmap
+
+- add validations for each endpoint
+- cover it with tests
