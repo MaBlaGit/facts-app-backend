@@ -1,0 +1,57 @@
+name: fats-backend-ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: "postgresql://${{ secrets.POSTGRES_USER }}:${{ secrets.POSTGRES_PASSWORD }}@localhost:5432/fact?schema=public"
+      URL_DEV: "http://127.0.0.1"
+      PORT: 3000
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Start PostgreSQL container
+        run: |
+          docker run -d --name postgres \
+            -e POSTGRES_USER=${{ secrets.POSTGRES_USER }} \
+            -e POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} \
+            -p 5432:5432 \
+            postgres:10.3
+          # Wait for PostgreSQL to be ready
+          while ! docker exec postgres pg_isready -U ${{ secrets.POSTGRES_USER }}; do sleep 1; done
+
+      - name: Generate Prisma client
+        run: pnpm prisma generate
+
+      - name: Apply Prisma migrations
+        run: pnpm prisma migrate deploy
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Stop PostgreSQL container
+        run: docker stop postgres && docker rm postgres
