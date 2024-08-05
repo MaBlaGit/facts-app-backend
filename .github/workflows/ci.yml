@@ -1,4 +1,4 @@
-name: fats-backend-ci
+name: facts-backend-ci
 
 on:
   push:
@@ -19,14 +19,14 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - uses: actions/checkout@v4
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
